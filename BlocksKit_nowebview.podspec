@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = 'BlocksKit_nowebview'
-  s.version               = '2.2.5'
+  s.version               = '2.2.7'
   s.license               = 'MIT'
   s.summary               = 'The Objective-C block utilities you always wish you had.'
   s.homepage              = 'https://github.com/TianQiLi/BlocksKit_nowebview'
