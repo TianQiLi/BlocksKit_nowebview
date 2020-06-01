@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '6.0'
 
   s.public_header_files = 'BlocksKit/*.h','BlocksKit/**/*.h'
-  s.source_files = 'BlocksKit/**/*.{h,m}','BlocksKit/*.{h,m}'
+  s.source_files = 'BlocksKit/*.{h,m}','BlocksKit/**/*.{h,m}'
   s.frameworks    = "Foundation", "UIKit"
  
 end
