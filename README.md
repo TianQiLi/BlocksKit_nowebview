@@ -40,3 +40,7 @@ BlocksKit is maintained under the MIT license.  **The project itself is free for
 Unsure about your rights?  [Read more.](http://opensource.org/licenses/MIT)
 
 Individual credits for included code exist in the header files and documentation. We thank them for their contributions to the open source community.
+
+
+
+2.2.5 版本，删除了UIWebView 的分类，用于处理苹果关于UIWebview 的禁止使用问题
