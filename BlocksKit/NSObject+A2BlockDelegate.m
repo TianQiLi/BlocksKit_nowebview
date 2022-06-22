@@ -331,6 +331,13 @@ typedef A2DynamicDelegate *(^A2GetDynamicDelegateBlock)(NSObject *, BOOL);
 		if ([delegate isEqual:dynamicDelegate]) {
 			delegate = nil;
 		}
+        
+        if (@available(iOS 13.0, *)) {
+            if ([delegate isKindOfClass:NSClassFromString(@"TUIEmojiSearchTextField")]) {
+                delegate = nil;
+            }
+        }
+        
 		dynamicDelegate.realDelegate = delegate;
 	});
 
