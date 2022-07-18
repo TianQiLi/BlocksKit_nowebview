@@ -19,18 +19,26 @@
 {
 	BOOL ret = YES;
 	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldShouldBeginEditing:)])
+    if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldShouldBeginEditing:)] && ![self isNeedIgnore:realDelegate])
 		ret = [realDelegate textFieldShouldBeginEditing:textField];
 	BOOL (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
 	if (block)
 		ret &= block(textField);
 	return ret;
 }
+- (BOOL)isNeedIgnore:(id)realDelegate
+{
+    //否则会循环调用
+    if (realDelegate && [realDelegate isKindOfClass:NSClassFromString(@"UIEditUserWordController")]) {
+        return YES;
+    }
+    return NO;
+}
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
 	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldDidBeginEditing:)])
+	if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldDidBeginEditing:)] && ![self isNeedIgnore:realDelegate])
 		[realDelegate textFieldDidBeginEditing:textField];
 	void (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
 	if (block)
@@ -41,7 +49,7 @@
 {
 	BOOL ret = YES;
 	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldShouldEndEditing:)])
+	if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldShouldEndEditing:)] && ![self isNeedIgnore:realDelegate])
 		ret = [realDelegate textFieldShouldEndEditing:textField];
 	BOOL (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
 	if (block)
@@ -52,7 +60,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
 	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldDidEndEditing:)])
+	if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldDidEndEditing:)] && ![self isNeedIgnore:realDelegate])
 		[realDelegate textFieldDidEndEditing:textField];
 	void (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
 	if (block)
@@ -63,7 +71,7 @@
 {
 	BOOL ret = YES;
 	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)])
+	if (realDelegate && [realDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)] && ![self isNeedIgnore:realDelegate])
 		ret = [realDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string];
 	BOOL (^block)(UITextField *, NSRange, NSString *) = [self blockImplementationForMethod:_cmd];
 	if (block)
@@ -75,7 +83,7 @@
 {
 	BOOL ret = YES;
 	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldShouldClear:)])
+	if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldShouldClear:)] && ![self isNeedIgnore:realDelegate])
 		ret = [realDelegate textFieldShouldClear:textField];
 	BOOL (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
 	if (block)
@@ -87,7 +95,7 @@
 {
 	BOOL ret = YES;
 	id realDelegate = self.realDelegate;
-	if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldShouldReturn:)])
+	if (realDelegate && [realDelegate respondsToSelector:@selector(textFieldShouldReturn:)] && ![self isNeedIgnore:realDelegate])
 		ret = [realDelegate textFieldShouldReturn:textField];
 	BOOL (^block)(UITextField *) = [self blockImplementationForMethod:_cmd];
 	if (block)
